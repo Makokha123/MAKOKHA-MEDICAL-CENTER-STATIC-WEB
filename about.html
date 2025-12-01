@@ -396,9 +396,12 @@
         }
 
         .founder-image {
-            position: relative;
             height: 250px;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
         }
 
         .founder-image::after {
@@ -417,14 +420,17 @@
         }
         
         .founder-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             transition: transform 0.5s ease;
+            padding: 10px;
         }
         
         .founder-card:hover .founder-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .founder-info {
@@ -469,21 +475,28 @@
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
-        
+                
         .doctor-image {
             height: 250px;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
         }
-        
+
         .doctor-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             transition: transform 0.5s ease;
+            padding: 10px;
         }
-        
+
         .doctor-card:hover .doctor-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .doctor-info {
@@ -922,7 +935,9 @@
                     
                     <div class="founder-card">
                         <div class="founder-image">
-                                                <img src="images/daniel.jpg" alt="Daniel Mumo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.alt='Daniel Mumo'">
+                            <img src="images/daniel.jpg" alt="Daniel Mumo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.alt='Daniel Mumo'">
+                        </div>
+                        <div class="founder-info">
                             <h3>Dr. Daniel Mumo Kyalo</h3>
                             <p class="founder-role">Co-founder</p>
                             <p>Dr. Daniel brings specialized expertise in pediatric care and has been instrumental in developing our children's health programs. He completed his pediatrics residency at Kenyatta National Hospital.</p>
