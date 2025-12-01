@@ -110,11 +110,6 @@ const Performance = {
     logPageLoad: () => {
         const loadTime = performance.now() - Performance.startTime;
         console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
-        
-        // Send to analytics in production
-        if (window.ga) {
-            ga('send', 'timing', 'Page Load', 'load', Math.round(loadTime));
-        }
     },
     
     logFirstPaint: () => {
@@ -129,11 +124,6 @@ const Performance = {
 // Error Tracking
 window.addEventListener('error', function(e) {
     console.error('Global error:', e.error);
-    
-    // Send to error tracking service
-    if (window.Sentry) {
-        Sentry.captureException(e.error);
-    }
 });
 
 // Initialize on DOM Content Loaded
@@ -184,46 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             document.body.appendChild(notification);
-            
-            // Add styles
-            const style = document.createElement('style');
-            style.textContent = `
-                .offline-notification {
-                    position: fixed;
-                    bottom: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: #ff4444;
-                    color: white;
-                    padding: 1rem 1.5rem;
-                    border-radius: var(--border-radius);
-                    box-shadow: var(--shadow);
-                    z-index: 10000;
-                    animation: slideUp 0.3s ease;
-                }
-                
-                @keyframes slideUp {
-                    from {
-                        opacity: 0;
-                        transform: translateX(-50%) translateY(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(-50%) translateY(0);
-                    }
-                }
-                
-                .offline-content {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                }
-                
-                .offline-content i {
-                    font-size: 1.2rem;
-                }
-            `;
-            document.head.appendChild(style);
         }
     }
     
@@ -252,6 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('img[data-src]').forEach(img => {
         lazyLoadObserver.observe(img);
     });
+    
+    // Create back to top button
+    createBackToTopButton();
 });
 
 // Tooltip functions
@@ -277,6 +230,32 @@ function hideTooltip() {
     if (tooltip) {
         tooltip.remove();
     }
+}
+
+// Create Back to Top button
+function createBackToTopButton() {
+    const button = document.createElement('button');
+    button.className = 'back-to-top';
+    button.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    button.setAttribute('aria-label', 'Back to top');
+    document.body.appendChild(button);
+    
+    // Show/hide button on scroll
+    window.addEventListener('scroll', throttle(() => {
+        if (window.scrollY > 300) {
+            button.classList.add('visible');
+        } else {
+            button.classList.remove('visible');
+        }
+    }, 100));
+    
+    // Scroll to top on click
+    button.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 
 // Window load handler
