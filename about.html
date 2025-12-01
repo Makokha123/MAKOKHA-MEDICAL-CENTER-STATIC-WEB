@@ -375,9 +375,45 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
+        /* Enhanced Founder Styles */
+        .founder-qualifications {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .founder-qualifications p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .founder-qualifications i {
+            color: var(--primary-color);
+        }
+
         .founder-image {
+            position: relative;
             height: 250px;
             overflow: hidden;
+        }
+
+        .founder-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        /* Backup image styling */
+        .founder-image img[src*="unsplash"] {
+            filter: grayscale(20%);
         }
         
         .founder-image img {
@@ -802,7 +838,7 @@
     <header class="header">
         <div class="container header-container">
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="Makokha Medical Centre Logo" class="logo-image">
+                <img src="images/logo.png" alt="Makokha Medical Centre Logo" class="logo-image">
                 <div class="logo-text">Makokha <span>Medical Centre</span></div>
             </a>
             
@@ -875,20 +911,18 @@
                 <div class="founders-grid">
                     <div class="founder-card">
                         <div class="founder-image">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. John Makokha" loading="lazy">
+                            <img src="images/makokha.png" alt="Makokha Nelson Ndinyo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.alt='Dr. Makokha Nelson Ndinyo'">
                         </div>
                         <div class="founder-info">
                             <h3>Dr. Makokha Nelson Ndinyo</h3>
                             <p class="founder-role">Founder & Clinical officer</p>
-                            <p>With over 25 years of medical experience, Dr. Makokha envisioned a healthcare centre that would serve the community with excellence and compassion. He holds Bsc, Clinical Medicine from Uzima University and specialized in Telemediicne.</p>
+                            <p>2+ years of medical experience, Dr. Makokha envisioned a healthcare centre that would serve the community with excellence and compassion. He holds Bsc. Clinical Medicine from Uzima University and specialized in Telemedicine.</p>
                         </div>
                     </div>
                     
                     <div class="founder-card">
                         <div class="founder-image">
-                            <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. Sarah Makokha" loading="lazy">
-                        </div>
-                        <div class="founder-info">
+                                                <img src="images/daniel.jpg" alt="Daniel Mumo" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.alt='Daniel Mumo'">
                             <h3>Dr. Daniel Mumo Kyalo</h3>
                             <p class="founder-role">Co-founder</p>
                             <p>Dr. Daniel brings specialized expertise in pediatric care and has been instrumental in developing our children's health programs. He completed his pediatrics residency at Kenyatta National Hospital.</p>
@@ -1071,8 +1105,7 @@
             <div class="container">
                 <div class="section-title white-title">
                     <h2>Our Journey</h2>
-                    <p>1
-                        1+ years of dedicated healthcare service</p>
+                    <p>1+ years of dedicated healthcare service and our upcoming plans</p>
                 </div>
                 
                 <div class="history-timeline">
@@ -1089,7 +1122,7 @@
                         <div class="timeline-year">By May 2026</div>
                         <div class="timeline-content">
                             <h3>First Expansion</h3>
-                            <p> Anticipating to Added new wings for maternity and pediatric care, expanding our service capacity to serve more families.</p>
+                            <p> Anticipating to Add a new wings for maternity and pediatric care, expanding our service capacity to serve more families.</p>
                             <p>Launch round-the-clock emergency services to better serve the community's urgent healthcare needs.</p>
                         </div>
                     </div>
@@ -1106,7 +1139,7 @@
                         <div class="timeline-year">2025</div>
                         <div class="timeline-content">
                             <h3>Today</h3>
-                            <p>Serving over 10,000 patients with on faclity healthcare services and community outreach programs.</p>
+                            <p>Serving over 10,000+ patients with on faclity healthcare services and community outreach programs.</p>
                         </div>
                     </div>
                 </div>
