@@ -1,0 +1,498 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Makokha Medical Centre{% endblock %}
+
+{% block content %}
+<style>
+    /* About Hero */
+    .about-hero {
+        background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1516549655669-dfbf10d0c9b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+        background-size: cover;
+        background-position: center;
+        color: var(--white);
+        padding: 8rem 0 4rem;
+        text-align: center;
+        margin-top: 60px;
+    }
+    
+    .about-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Mission Section */
+    .mission-section {
+        padding: 5rem 0;
+        background: var(--white);
+    }
+    
+    .mission-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+    
+    .mission-text h2 {
+        font-size: 2.5rem;
+        color: var(--dark-color);
+        margin-bottom: 1.5rem;
+    }
+    
+    .mission-text p {
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .mission-image {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+    
+    .mission-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+    
+    .mission-image:hover img {
+        transform: scale(1.05);
+    }
+    
+    /* Founders Section */
+    .founders-section {
+        padding: 5rem 0;
+        background: var(--light-color);
+    }
+    
+    .founders-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .founder-card {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+    
+    .founder-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .founder-image {
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .founder-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .founder-card:hover .founder-image img {
+        transform: scale(1.1);
+    }
+    
+    .founder-info {
+        padding: 2rem;
+    }
+    
+    .founder-info h3 {
+        font-size: 1.5rem;
+        color: var(--dark-color);
+        margin-bottom: 0.5rem;
+    }
+    
+    .founder-role {
+        color: var(--primary-color);
+        font-weight: 500;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    /* Values Section */
+    .values-section {
+        padding: 5rem 0;
+        background: var(--white);
+    }
+    
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .value-card {
+        text-align: center;
+        padding: 2rem;
+        background: var(--light-color);
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+    }
+    
+    .value-card:hover {
+        background: var(--primary-color);
+        color: var(--white);
+        transform: translateY(-5px);
+    }
+    
+    .value-card:hover .value-icon {
+        background: var(--white);
+        color: var(--primary-color);
+    }
+    
+    .value-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-color);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        transition: var(--transition);
+    }
+    
+    /* History Section */
+    .history-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: var(--white);
+    }
+    
+    .history-timeline {
+        max-width: 800px;
+        margin: 3rem auto 0;
+        position: relative;
+    }
+    
+    .history-timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .timeline-item {
+        margin-bottom: 3rem;
+        position: relative;
+        width: 50%;
+        padding-right: 3rem;
+    }
+    
+    .timeline-item:nth-child(even) {
+        margin-left: 50%;
+        padding-left: 3rem;
+        padding-right: 0;
+    }
+    
+    .timeline-year {
+        position: absolute;
+        right: -60px;
+        top: 0;
+        background: var(--accent-color);
+        color: var(--dark-color);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-year {
+        right: auto;
+        left: -60px;
+    }
+    
+    .timeline-content {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .mission-content {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        
+        .about-hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .mission-text h2 {
+            font-size: 2rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .about-hero {
+            padding: 7rem 0 3rem;
+        }
+        
+        .history-timeline::before {
+            left: 30px;
+        }
+        
+        .timeline-item {
+            width: 100%;
+            padding-left: 4rem;
+            padding-right: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: 0;
+            padding-left: 4rem;
+        }
+        
+        .timeline-year {
+            left: 0;
+            right: auto;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: 0;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .about-hero h1 {
+            font-size: 2rem;
+        }
+        
+        .mission-section,
+        .founders-section,
+        .values-section,
+        .history-section {
+            padding: 3rem 0;
+        }
+        
+        .founder-info {
+            padding: 1.5rem;
+        }
+        
+        .value-card {
+            padding: 1.5rem;
+        }
+        
+        .timeline-content {
+            padding: 1rem;
+        }
+    }
+</style>
+
+<!-- About Hero -->
+<section class="about-hero">
+    <div class="container">
+        <h1>About Makokha Medical Centre</h1>
+        <p>Trusted healthcare in Maliki for over 15 years</p>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+    <div class="container">
+        <div class="mission-content">
+            <div class="mission-text">
+                <h2>Our Mission & Vision</h2>
+                <p>Founded in 2009, Makokha Medical Centre has been dedicated to providing exceptional healthcare services to the Maliki community and surrounding areas. Our mission is to deliver compassionate, comprehensive, and accessible medical care to every patient.</p>
+                <p>We envision a healthier community where quality healthcare is accessible to all, regardless of background or circumstance. Our team of dedicated professionals works tirelessly to make this vision a reality.</p>
+                <p>With state-of-the-art facilities and a patient-centered approach, we strive to be the leading healthcare provider in our region, setting standards for excellence in medical care.</p>
+            </div>
+            <div class="mission-image">
+                <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Medical Centre">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Founders Section -->
+<section class="founders-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Founders</h2>
+            <p>The visionaries behind Makokha Medical Centre's success story</p>
+        </div>
+        
+        <div class="founders-grid">
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. John Makokha">
+                </div>
+                <div class="founder-info">
+                    <h3>Dr. John Makokha</h3>
+                    <p class="founder-role">Founder & Chief Medical Officer</p>
+                    <p>With over 25 years of medical experience, Dr. Makokha envisioned a healthcare centre that would serve the community with excellence and compassion.</p>
+                </div>
+            </div>
+            
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. Sarah Makokha">
+                </div>
+                <div class="founder-info">
+                    <h3>Dr. Sarah Makokha</h3>
+                    <p class="founder-role">Co-founder & Head of Pediatrics</p>
+                    <p>Dr. Sarah brings specialized expertise in pediatric care and has been instrumental in developing our children's health programs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Core Values</h2>
+            <p>The principles that guide everything we do</p>
+        </div>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Compassion</h3>
+                <p>Treating every patient with empathy, kindness, and understanding.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Excellence</h3>
+                <p>Commitment to the highest standards of medical care and service.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Community</h3>
+                <p>Serving and supporting the health needs of our local community.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Integrity</h3>
+                <p>Upholding ethical standards and transparency in all our actions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- History Timeline -->
+<section class="history-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Journey</h2>
+            <p>15 years of dedicated healthcare service</p>
+        </div>
+        
+        <div class="history-timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2009</div>
+                <div class="timeline-content">
+                    <h3>Foundation</h3>
+                    <p>Makokha Medical Centre was established with a small clinic serving basic healthcare needs.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-content">
+                    <h3>First Expansion</h3>
+                    <p>Added new wings for maternity and pediatric care, expanding our service capacity.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-content">
+                    <h3>24/7 Emergency</h3>
+                    <p>Launched round-the-clock emergency services to better serve the community.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-content">
+                    <h3>Modernization</h3>
+                    <p>Complete facility upgrade with state-of-the-art medical equipment and technology.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3>Today</h3>
+                    <p>Serving over 50,000 patients with comprehensive healthcare services and community programs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block scripts %}
+<script>
+    // Timeline animation
+    function animateTimeline() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        timelineItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, index * 300);
+        });
+    }
+    
+    // Initialize timeline items
+    document.addEventListener('DOMContentLoaded', () => {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        // Intersection Observer for timeline animation
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateTimeline();
+                    timelineObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const timelineSection = document.querySelector('.history-timeline');
+        if (timelineSection) {
+            timelineObserver.observe(timelineSection);
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}
