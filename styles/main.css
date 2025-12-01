@@ -167,3 +167,19 @@ html {
     background: #0d62d9;
     transform: translateY(-3px);
 }
+.logo-image {
+    height: 50px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .logo-image {
+        height: 40px; /* Smaller on mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-image {
+        height: 35px; /* Even smaller on very small screens */
+    }
+}
